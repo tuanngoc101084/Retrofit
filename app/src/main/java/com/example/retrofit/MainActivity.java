@@ -8,6 +8,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,22 +45,22 @@ public class MainActivity extends AppCompatActivity {
     /// Buoc 2: Tao interface request
      ApiRequest apiRequest= retrofit.create(ApiRequest.class);
      ///Buoc 3: gui request va nhan ve call back
-        Call<DEMO3> callback= apiRequest.getDemo3();
-        callback.enqueue(new Callback<DEMO3>() {
+        Call< List<Demo4>> callback= apiRequest.getDemo4();
+        callback.enqueue(new Callback<List<Demo4>>() {
             @Override
-            public void onResponse(Call<DEMO3> call, Response<DEMO3> response) {
-                DEMO3 object= response.body();
-                Language  language= object.getLanguage();
-                En en=language.getEn();
-                    Log.d("BBB",en.getName());
-                    Vn vn= language.getVn();
-                Log.d("BBB",vn.getName());
+            public void onResponse(Call< List<Demo4>> call, Response< List<Demo4>> response) {
+                List<Demo4> object= response.body();
+
+                for(Demo4 s: object) {
+                    Log.d("BBB",s.getKhoahoc());
+                    Log.d("BBB",s.getHocphi());
+                }
 
             }
 
             @Override
-            public void onFailure(Call<DEMO3> call, Throwable t) {
-
+            public void onFailure(Call< List<Demo4>> call, Throwable t) {
+                Log.d("BBB",t.getMessage());
             }
 
 
