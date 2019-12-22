@@ -44,21 +44,21 @@ public class MainActivity extends AppCompatActivity {
     /// Buoc 2: Tao interface request
      ApiRequest apiRequest= retrofit.create(ApiRequest.class);
      ///Buoc 3: gui request va nhan ve call back
-        Call<Demo2> callback= apiRequest.getDemo2();
-        callback.enqueue(new Callback<Demo2>() {
+        Call<DEMO3> callback= apiRequest.getDemo3();
+        callback.enqueue(new Callback<DEMO3>() {
             @Override
-            public void onResponse(Call<Demo2> call, Response<Demo2> response) {
-                Demo2 object= response.body();
-                List<Danhsach> temp= object.getDanhsach();
-                int i=0;
-                for (Danhsach s: temp) {
-                    Log.d("BBB",s.getKhoahoc());
-                }
+            public void onResponse(Call<DEMO3> call, Response<DEMO3> response) {
+                DEMO3 object= response.body();
+                Language  language= object.getLanguage();
+                En en=language.getEn();
+                    Log.d("BBB",en.getName());
+                    Vn vn= language.getVn();
+                Log.d("BBB",vn.getName());
 
             }
 
             @Override
-            public void onFailure(Call<Demo2> call, Throwable t) {
+            public void onFailure(Call<DEMO3> call, Throwable t) {
 
             }
 

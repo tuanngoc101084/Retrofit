@@ -10,4 +10,6 @@ public interface ApiRequest {
     Call<Demo1> getDemo1();
     @GET("demo2.json")
     Call<Demo2> getDemo2();
+    @GET("demo3.json")
+    Call<DEMO3> getDemo3();
 }
